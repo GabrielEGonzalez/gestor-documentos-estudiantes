@@ -7,7 +7,7 @@ global $conn;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $correo = isset($_POST['correo']) ?? null;
     $pass = isset($_POST['password']) ?? null;
-    $sql = 'select id, correo , pass , rol from usuarios where correo = ' . $correo;
+    $sql = 'SELECT id, correo , pass , rol FROM usuarios WHERE correo = ' . $correo;
     $user = $conn->query($sql)->fetch_assoc();
     $conn->close();
     if (isset($user['correo'])) {
