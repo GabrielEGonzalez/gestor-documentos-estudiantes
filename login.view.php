@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['usuario_id'] = $user['id'];
             //redirecion por rol
             if ($user['rol'] === 'estudiante') {
-                header('location : dashboard.view.php');
+                header('location : panel.view.php');
             } else {
                 header('location : admin.view.php');
             }
@@ -42,7 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label for="correo">Correo:</label>
         <input type="email" name="correo">
         <label for="password">Contraseña:</label>
-        <input type="password" name="password" id="password">
+        <input type="password" name="password" id="password"><br>
+        <input type="submit" value="enviar">
     </form>
 </body>
 
