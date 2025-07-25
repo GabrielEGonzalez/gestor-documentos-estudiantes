@@ -15,10 +15,10 @@
             "rol"=>$rol
         ];
         //insertar los datos en la base de datos
-        $pass = password_hash($userdata['pass']);
+        $pass = password_hash($userdata['pass'], PASSWORD_DEFAULT);
         $sql = "INSERT INTO usuarios(nombre,correo,pass,rol) VALUES (?,?,?,?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param('sss',$userdata['nombre'],$userdata['correo'],$userdata['pass'],$userdata['rol']);
+        $stmt->bind_param('ssss',$userdata['nombre'],$userdata['correo'],$userdata['pass'],$userdata['rol']);
 
         $sql = 'SELECT id FROM usuarios WHERE correo ='. $userdata['correo'];
         $user_id = $conn->query($sql)->fetch_assoc();
@@ -27,7 +27,7 @@
         $_SESSION['usuario_id']=$user_id;
         //redireccion
 
-        header('location: dashboard.view.php');
+        header('location: panel.view.php');
     }
 ?>
 <!DOCTYPE html>
@@ -38,13 +38,15 @@
     <title>Registro</title>
 </head>
 <body>
-    <form action="/" method="post">
+    <form action="" method="post">
         <label for="nombre">Nombre:</label>
         <input type="text" name="nombre" id="nombre"><br>
         <label for="correo">Correo:</label>
         <input type="email" name="correo" id="correo"><br>
         <label for="pass">Contraseña:</label>
         <input type="password" name="pass" id="pass">
+        <br>
+        <input type="submit" value="enviar">
     </form>
 </body>
 </html>
