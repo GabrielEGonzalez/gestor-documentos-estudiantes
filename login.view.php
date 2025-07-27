@@ -4,11 +4,15 @@ session_start();
 require_once('./config/bd.php');
 global $conn;
 //consultar a la base de datos
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $correo = isset($_POST['correo']) ?? null;
-    $pass = isset($_POST['password']) ?? null;
-    $sql = 'SELECT id, correo , pass , rol FROM usuarios WHERE correo = ' . $correo;
-    $user = $conn->query($sql)->fetch_assoc();
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $correo = $_POST['correo'];
+    $pass = $_POST['password'];
+    $sql = 'SELECT id, correo , pass , rol FROM usuarios WHERE correo = ? ';
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('s',$correo);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
     $conn->close();
     if (isset($user['correo'])) {
         //validamos las credenciales
@@ -18,9 +22,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['usuario_id'] = $user['id'];
             //redirecion por rol
             if ($user['rol'] === 'estudiante') {
-                header('location : panel.view.php');
+                header('Location : panel.view.php');
+                exit();
             } else {
-                header('location : admin.view.php');
+                header('Location : admin.view.php');
             }
         }
     }
