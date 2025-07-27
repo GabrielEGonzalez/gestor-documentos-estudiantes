@@ -9,25 +9,32 @@
         //recibir los datos del metodo post
         $rol = isset($_POST['rol'])? $_POST['rol']: 'estudiante';
         $userdata = [
-            "nombre"=>isset($_POST['nombre']),
-            "correo"=>isset($_POST['correo']),
-            "pass"=>isset($_POST['pass']),
+            "nombre"=>$_POST['nombre'],
+            "correo"=>$_POST['correo'],
+            "pass"=>$_POST['pass'],
             "rol"=>$rol
         ];
         //insertar los datos en la base de datos
         $pass = password_hash($userdata['pass'], PASSWORD_DEFAULT);
         $sql = "INSERT INTO usuarios(nombre,correo,pass,rol) VALUES (?,?,?,?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param('ssss',$userdata['nombre'],$userdata['correo'],$userdata['pass'],$userdata['rol']);
+        $stmt->bind_param('ssss',$userdata['nombre'],$pass,$userdata['rol'],$userdata['correo']);
+        $stmt->execute();
+        $stmt->close();
 
-        $sql = 'SELECT id FROM usuarios WHERE correo ='. $userdata['correo'];
-        $user_id = $conn->query($sql)->fetch_assoc();
+        $sql = 'SELECT id FROM usuarios WHERE correo = ?';
+        $stmt =$conn->prepare($sql);
+        $stmt->bind_param('s', $userdata['correo']);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
         //crear la session con usario_id , rol
-        $_SESSION['rol']=$userdata['rol'];
-        $_SESSION['usuario_id']=$user_id;
+        $_SESSION['rol'] = $userdata['rol'];
+        $_SESSION['usuario_id'] = $row ? $row['id'] : null;
         //redireccion
 
         header('location: panel.view.php');
+        exit();
     }
 ?>
 <!DOCTYPE html>
