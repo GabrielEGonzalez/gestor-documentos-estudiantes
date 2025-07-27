@@ -5,7 +5,7 @@
     $password = "";
     $bd_name="gestor_de_documentos";
 
-    $conn = new  mysqli($localhost, $username, $password, $bd_name);
+    $conn = new mysqli($localhost, $username, $password, $bd_name);
 
     if($conn->connect_error){
         die("Error de conexion");
