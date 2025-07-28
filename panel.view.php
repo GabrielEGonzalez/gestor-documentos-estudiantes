@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $filename = $ruta . basename($_FILES['envio']['name']);
 
     if ($_FILES['envio']['size'] < 10000) {
-        $mensaje = '<div style=" background-color: rgba(194, 1, 1,0.5);color: #fff;"><h2>tamanio mayor 10mb.</h2></div>';
+        $mensaje = '<div style=" background-color: rgba(194, 1, 1,0.5);color: #fff;width: 100%;height: 50px;"><h2>tamanio mayor 10mb.</h2></div>';
     }
 
     if (pathinfo($_FILES['envio']['name'], PATHINFO_EXTENSION) == 'pdf') {
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     }
 
     if (move_uploaded_file($_FILES['envio']['tmp_name'], $filename)) {
-        $mensaje = '<div><h2>archivo enviando exitosamente.</h2></div>';
+        $mensaje = '<div style="background-color: rgba(1, 194, 33, 0.5);color: #fff;width: 100%;height: 50px;"><h2>archivo enviando exitosamente.</h2></div>';
     }
 }
 
