@@ -18,7 +18,7 @@
         $pass = password_hash($userdata['pass'], PASSWORD_DEFAULT);
         $sql = "INSERT INTO usuarios(nombre,correo,pass,rol) VALUES (?,?,?,?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param('ssss',$userdata['nombre'],$pass,$userdata['rol'],$userdata['correo']);
+        $stmt->bind_param('ssss',$userdata['nombre'],$userdata['correo'],$pass,$userdata['rol']);
         $stmt->execute();
         $stmt->close();
 
