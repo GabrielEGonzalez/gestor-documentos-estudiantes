@@ -1,8 +1,15 @@
 <?php
 //crear la session
-session_start();
 require_once('./config/bd.php');
+session_start();
 global $conn;
+
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+// ... tu código
+
 //consultar a la base de datos
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $correo = $_POST['correo'];
@@ -12,8 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bind_param('s',$correo);
     $stmt->execute();
     $result = $stmt->get_result();
+    $stmt->close();
     $user = $result->fetch_assoc();
-    $conn->close();
+
     if (isset($user['correo'])) {
         //validamos las credenciales
         if (password_verify($pass, $user['pass'])) {
@@ -22,15 +30,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['usuario_id'] = $user['id'];
             //redirecion por rol
             if ($user['rol'] === 'estudiante') {
-                header('Location : panel.view.php');
+                header('Location: panel.view.php');
                 exit();
             } else {
-                header('Location : admin.view.php');
+                header('Location: admin.view.php');
+                exit();
             }
         }
     }
     //redirecionar a los vistas
-    header('location : register.view.php');
+    header('location: register.view.php');
+    exit();
 }
 ?>
 <!DOCTYPE html>
