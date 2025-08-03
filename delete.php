@@ -10,8 +10,8 @@
     $stmt->close();
     $ruta = $resul->fetch_assoc();
 
-    if(file_exists($ruta)){
-        if(unlink($ruta)){
+    if(file_exists($ruta['guardado'])){
+        if(unlink($ruta['guardado'])){
             echo 'archivo eliminado';
         }else{
             echo 'archivo no fue eliminado';
