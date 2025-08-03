@@ -5,11 +5,6 @@ session_start();
 global $conn;
 
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-// ... tu código
-
 //consultar a la base de datos
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $correo = $_POST['correo'];
