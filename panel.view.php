@@ -6,7 +6,11 @@ if (!isset($_SESSION['usuario_id'])) {
     header('location: register.view.php');
 }
 
-$mensaje = isset($_SESSION['mensaje'])? $_SESSION['mensaje']:'';
+$mensaje = '';
+if (isset($_SESSION['mensaje'])) {
+    $mensaje = $_SESSION['mensaje'];
+    unset($_SESSION['mensaje']);
+}
 
 $stmt = $conn->prepare('SELECT * FROM archivos WHERE usuario_id = ?');
 $stmt->bind_param('i', $_SESSION['usuario_id']);
@@ -39,7 +43,11 @@ $archivos = $resul->fetch_all(MYSQLI_ASSOC);
 
 <body>
     
-    <?php echo $mensaje ;?>
+    <?php if (!empty($mensaje)): ?>
+    <div style="background-color: #d4edda; padding: 10px; border-radius: 5px; color: #155724; margin-bottom: 10px;">
+        <?= $mensaje ?>
+    </div>
+<?php endif; ?>
     <form action="uploads.php" method="post" enctype="multipart/form-data">
         <label for="envio">envio de documento:</label>
         <input type="file" name="envio" id="envio"><br>
