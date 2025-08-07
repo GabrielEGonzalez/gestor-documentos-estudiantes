@@ -1,4 +1,3 @@
-¡Genial, Gabo! Ya lo tenés clarísimo y estás bien motivado. Vamos a **reordenar, corregir y dejarte el proyecto limpio, realista y sin usar MVC**, pero con buena organización modular.
 
 ---
 
@@ -104,19 +103,3 @@ gestor-documentos-estudiantes/
 * [ ] Mejorar UI para CV y GitHub
 
 ---
-
-## 🧑‍💻 ¿Cómo seguimos?
-
-### ✅ Si querés iniciar ya:
-
-Puedo ayudarte con el primer archivo: `config.php`, luego el `register.php` (formulario + lógica).
-
-### ✍️ O si preferís avanzar solo:
-
-Te doy los archivos base vacíos con `// TODO` y tú los vas llenando.
-
----
-
-¿Querés que comencemos ya por la **base de datos + archivo de conexión `config.php`**, y luego pasamos al **registro con hash de contraseña y sesión**? ¿O preferís primero que te prepare todos los archivos iniciales vacíos con estructura limpia?
-
-Vos decidís el ritmo.
