@@ -49,13 +49,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
-    <form action="" method="post">
+
+    <div class="contenedor">
+        <div class="imagen">
+        <img src="./img/freepik__the-style-is-candid-image-photography-with-natural__2573.png" alt="">
+        </div>
+
+        <form action="" method="post">
+        <div class="text">
+            <h1>Iniciar Sesión</h1>
+        </div>
+        <p>¡Bienvenido de nuevo! <br> Por favor, ingresa tus datos.</p>
         <label for="correo">Correo:</label>
         <input type="email" name="correo">
         <label for="password">Contraseña:</label>
         <input type="password" name="password" id="password"><br>
+        <a href="#">¿Olvidaste tu contraseña?</a><br>
         <input type="submit" value="enviar">
-    </form>
+        <div class="text">
+            <p>¿No tienes una cuenta? <a href="#">Regístrate aquí.</a></p>
+        </div>
+        </form>
+    </div>
+    
 </body>
 
 </html>
