@@ -43,17 +43,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
+    <link rel="stylesheet" href="./css/formulario.css">
 </head>
 <body>
-    <form action="" method="post">
-        <label for="nombre">Nombre:</label>
-        <input type="text" name="nombre" id="nombre"><br>
-        <label for="correo">Correo:</label>
-        <input type="email" name="correo" id="correo"><br>
-        <label for="pass">Contraseña:</label>
-        <input type="password" name="pass" id="pass">
-        <br>
-        <input type="submit" value="enviar">
+
+    <div class="contenedor">
+        <div class="imagen">
+        <img src="./img/freepik__the-style-is-candid-image-photography-with-natural__2573.png" alt="">
+        </div>
+
+        <form action="" method="post">
+            <div class="text">
+            <h1>Crea tu cuenta</h1>
+            </div>
+            <p>Únete a nuestra comunidad para acceder a tus tareas.</p>
+
+            <label for="nombre">Nombre completo:</label>
+            <input type="text" name="nombre" id="nombre" placeholder="Ej. Juan Pérez" required>
+
+            <label for="correo">Correo electrónico:</label>
+            <input type="email" name="correo" id="correo" placeholder="ejemplo@correo.com" required>
+
+            <label for="pass">Contraseña:</label>
+            <input type="password" name="pass" id="pass" placeholder="Crea tu contraseña segura" required>
+
+            <input style="margin-top:30px;" type="submit" value="Registrarme">
+            <div class="text" style="text-aling:left;" >
+            <p>¿Ya tienes una cuenta? <a href="login.view.php">Inicia sesión aquí.</a></p>
+            </div>
+        </form>
     </form>
+    </div>
 </body>
 </html>
