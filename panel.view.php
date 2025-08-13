@@ -26,33 +26,48 @@ $archivos = $resul->fetch_all(MYSQLI_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel</title>
-
+    <link rel="stylesheet" href="./css/panel.css">
     <style>
         table {
             border-collapse: collapse;
             border: 2px solid #000;
         }
 
-        td , th {
+        td,
+        th {
             border: 1px solid black;
-            padding:10px;
-            text-align:center;
+            padding: 10px;
+            text-align: center;
         }
     </style>
 </head>
 
 <body>
-    
-    <?php if (!empty($mensaje)): ?>
-    <div style="background-color: #d4edda; padding: 10px; border-radius: 5px; color: #155724; margin-bottom: 10px;">
-        <?= $mensaje ?>
-    </div>
-<?php endif; ?>
+    <header>
+        <div class="titulo">
+            <h1>Gestor de Documentos</h1>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Ayuda</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
     <form action="uploads.php" method="post" enctype="multipart/form-data">
-        <label for="envio">envio de documento:</label>
+        <?php if (!empty($mensaje)): ?>
+            <div style="background-color: #d4edda; padding: 10px; border-radius: 5px; color: #155724; margin-bottom: 10px;">
+                <?= $mensaje ?>
+            </div>
+        <?php endif; ?>
+        <label for="envio">Subir nuevo documento</label><br>
+
         <input type="file" name="envio" id="envio"><br>
-        <h6>documentos con extencion .pdf .doc .docx</h6>
-        <input type="submit" value="Enviar" onclick="startProgress()">
+        <h4>documentos con extencion .pdf .doc .docx</h4>
+        <input type="submit" value="Enviar">
     </form>
 
     <main class="con">
@@ -65,8 +80,6 @@ $archivos = $resul->fetch_all(MYSQLI_ASSOC);
                     <th style="border:1px solid black;">Descargar archivo</th>
                     <th style="border:1px solid black;">eliminar archivos</th>
                 </tr>
-
-
             </thead>
             <tbody>
                 <?php foreach ($archivos as $ar):
@@ -82,21 +95,9 @@ $archivos = $resul->fetch_all(MYSQLI_ASSOC);
 
         </table>
     </main>
-
-    <script>
-        let poss = 0;
-        let possgress = document.getElementById('myProgressBar');
-
-        function startProgress() {
-            const interval = setInterval(function () {
-                poss += 1;
-                possgress.value = poss;
-                if (poss >= 1000) {
-                    clearInterval(interval);
-                }
-            }, 9);
-        }
-    </script>
+    <footer>
+        <p>&copy; 2025 Mi Aplicación. Todos los derechos reservados.</p>
+    </footer>
 </body>
 
 </html>
