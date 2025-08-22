@@ -66,7 +66,7 @@ $archivos = $resul->fetch_all(MYSQLI_ASSOC);
         <label for="envio">Subir nuevo documento</label><br>
 
         <input type="file" name="envio" id="envio"><br>
-        <h4>documentos con extencion .pdf .doc .docx</h4>
+        <h5>documentos con extencion .pdf .doc .docx</h5>
         <input type="submit" value="Enviar">
     </form>
 
@@ -82,9 +82,11 @@ $archivos = $resul->fetch_all(MYSQLI_ASSOC);
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($archivos as $ar):
+                <?php foreach ($archivos as $key => $ar):
                     ; ?>
-                    <tr>
+                    <?php $key = $key + 1;?>
+                    <?php $dato = $key%2==0 ? "rgba(204, 204, 204, 0.84)": "white"?>
+                    <tr style="background-color: <?php echo $dato?>;">
                         <td> <?php echo $ar['nombre_original']; ?></td>
                         <td> <?php echo $ar['fecha_subida']; ?></td>
                         <td> <a href="<?php echo $ar['guardado']; ?>">Descargar</a></td>

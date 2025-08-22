@@ -1,145 +1,188 @@
+/* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Layout general */
 body {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.418);
+    min-height: 100vh;
+    background: #f4f6f9;
+    color: #333;
 }
 
+/* Encabezado */
 header {
     width: 100%;
-    padding: 10px;
+    padding: 15px 30px;
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    background-color: black;
-    border: 1px solid black;
-    color: white;
-}
-
-nav {
-    padding: 10px;
+    justify-content: space-between;
     align-items: center;
+    background: #222;
+    color: white;
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
 }
 
-ul {
+header h1 {
+    font-size: 1.8rem;
+}
+
+nav ul {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    gap: 10px;
+    gap: 15px;
 }
 
-li {
+nav li {
     list-style: none;
 }
 
 header a {
     text-decoration: none;
-    color: white;
+    color: #ddd;
+    transition: 0.3s;
 }
 
+header a:hover {
+    color: #1abc9c;
+}
+
+/* Formulario */
 form {
-    margin: 20px;
-    background-color: darkgray;
+    margin: 30px auto;
+    background: white;
     width: 500px;
-    padding: 10px;
+    max-width: 90%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
 }
 
-label {
-    font-size: 1.2rem;
-    margin: 10px;
+form label {
+    font-size: 1.1rem;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
     text-align: center;
 }
 
-input {
+form input[type="file"] {
     width: 100%;
+    padding: 12px;
+    border: 2px dashed #bbb;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    background: #fafafa;
 }
 
-input[type="file"] {
-    margin: 10px 0px;
-    padding: 20px;
-    border: 1px solid white;
+form input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background: #1abc9c;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-h4 {
-    margin-left: 10px;
+form input[type="submit"]:hover {
+    background: #16a085;
 }
 
+/* Mensaje */
+.alert {
+    background-color: #d4edda;
+    padding: 12px;
+    border-radius: 6px;
+    color: #155724;
+    border-left: 5px solid #28a745;
+    margin-bottom: 15px;
+}
+
+/* Contenido principal */
 .con {
+    flex: 1;
     width: 100%;
-    height: 50vh;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.5),
-        inset 0 -1px 0 rgba(255, 255, 255, 0.1),
-        inset 0 0 16px 8px rgba(255, 255, 255, 0.8);
-    position: relative;
-    overflow: hidden;
-
+    padding: 20px;
 }
-
-
-
-.con::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg,
-            transparent,
-            rgba(255, 255, 255, 0.8),
-            transparent);
-}
-
-.con::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 1px;
-    height: 100%;
-    background: linear-gradient(180deg,
-            rgba(255, 255, 255, 0.8),
-            transparent,
-            rgba(255, 255, 255, 0.3));
-}
-
 
 .con h2 {
-    padding: 5px;
     text-align: center;
+    margin-bottom: 20px;
 }
 
+/* Tabla */
 .con table {
     width: 90%;
-    margin: 20px;
-    margin-left: 70px;
+    margin: auto;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 3px 8px rgba(0,0,0,0.1);
 }
 
-thead {
+.con thead {
+    background: #1abc9c;
     color: white;
-    background-color: black;
+    font-size: 1rem;
 }
 
-
-footer{
-    width: 100%;
-    color: white;
-    background-color: black;
+.con th, 
+.con td {
+    padding: 12px 15px;
     text-align: center;
-    padding: 10px;
+}
+
+.con tr:nth-child(even) {
+    background: #f2f2f2;
+}
+
+.con tr:hover {
+    background: #eafaf7;
+}
+
+/* Botones de acción */
+.con a {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.con a[href*="delete"] {
+    background: #e74c3c;
+    color: white;
+}
+
+.con a[href*="delete"]:hover {
+    background: #c0392b;
+}
+
+.con a[href*="http"], 
+.con a[href*="uploads"] {
+    background: #3498db;
+    color: white;
+}
+
+.con a[href*="http"]:hover, 
+.con a[href*="uploads"]:hover {
+    background: #2980b9;
+}
+
+/* Footer */
+footer {
+    width: 100%;
+    background: #222;
+    color: #bbb;
+    text-align: center;
+    padding: 15px;
+    margin-top: auto;
 }
