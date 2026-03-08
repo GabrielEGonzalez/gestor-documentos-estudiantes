@@ -1,9 +1,9 @@
 <?php
 
-    $localhost ="127.0.0.1:3307";
+    $localhost ="127.0.0.1:3306";
     $username = "root";
     $password = "";
-    $bd_name="gestordocumentos";
+    $bd_name="gestor";
 
     $conn = new mysqli($localhost, $username, $password, $bd_name);
 
